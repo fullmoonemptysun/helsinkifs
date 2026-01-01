@@ -40,30 +40,46 @@ const Display = ({goodCount, neutCount, badCount}) => {
 
 const App = () => {
 
+    
+
     const [goodCount, setGoodCount] = useState(0)
     const [neutCount, setNeutCount] = useState(0)
     const [badCount, setBadCount] = useState(0)
 
     const handleGoodClick = () =>{
         setGoodCount(goodCount + 1)
+        
     }
     const handleNeutClick = () => {
         setNeutCount(neutCount + 1)
+        
     }
     const handleBadClick = () => {
         setBadCount(badCount + 1)
+        
     }
+
+ 
+    
+
 
 
     return(
         <div className='flex items-center justify-center flex-col gap-3'>
         <Header headContent="Please provide your Feedback."/>
 
+
+
         <BtnGroup onClick1={handleGoodClick} onClick2={handleNeutClick} onClick3={handleBadClick} />
         
 
         <Display goodCount={goodCount} neutCount={neutCount} badCount={badCount}></Display>
+
+        <p>All: {goodCount + neutCount + badCount}</p>
+        <p>Average: {((goodCount * 1) + (neutCount * 0) + (badCount * -1))/(goodCount + badCount + neutCount)}</p>
+        <p>Positive: {(goodCount/(goodCount+badCount+neutCount) * 100)}%</p>
         </div>
+
 
         
     )
