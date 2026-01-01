@@ -63,8 +63,25 @@ const App = () => {
     
 
 
+    if(goodCount == 0 && badCount == 0 && neutCount == 0){
+            return(
+        <div className='flex items-center justify-center flex-col gap-3'>
+        <Header headContent="Please provide your Feedback."/>
 
-    return(
+
+
+        <BtnGroup onClick1={handleGoodClick} onClick2={handleNeutClick} onClick3={handleBadClick} />
+        
+        <p>No Feedback provided.</p>
+
+        </div>
+        
+    )
+    }
+    
+
+    return (
+
         <div className='flex items-center justify-center flex-col gap-3'>
         <Header headContent="Please provide your Feedback."/>
 
@@ -74,13 +91,23 @@ const App = () => {
         
 
         <Display goodCount={goodCount} neutCount={neutCount} badCount={badCount}></Display>
-
-        <p>All: {goodCount + neutCount + badCount}</p>
-        <p>Average: {((goodCount * 1) + (neutCount * 0) + (badCount * -1))/(goodCount + badCount + neutCount)}</p>
-        <p>Positive: {(goodCount/(goodCount+badCount+neutCount) * 100)}%</p>
+        <table>
+            <tbody>
+                <tr>
+                    <td>All: </td>
+                    <td>{goodCount + neutCount + badCount}</td>
+                </tr>
+                <tr>
+                    <td>Average: </td>
+                    <td>{((goodCount * 1) + (neutCount * 0) + (badCount * -1))/(goodCount + neutCount + badCount)}</td>
+                </tr>
+                <tr>
+                    <td>Positive: </td>
+                    <td>{(goodCount/(goodCount + badCount + neutCount)) * 100}%</td>
+                </tr>
+            </tbody>
+        </table>
         </div>
-
-
         
     )
 
