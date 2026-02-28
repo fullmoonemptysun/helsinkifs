@@ -1,0 +1,94 @@
+/* simple reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+main {
+    padding: 1rem;
+}
+
+
+
+.sidebar {
+    background: linear-gradient(white, aqua, slateblue);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 25vw;
+
+    transition: ease 0.5s;
+    
+    
+    
+
+
+}
+
+/* children of sidebar */
+
+.sidebar.collapsed{
+    width: 10vw;
+    
+
+}
+
+
+
+.top{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    
+}
+
+button{
+   flex-shrink: 0;
+    height: 3rem;
+    width: 3rem;
+    
+}
+
+
+h1{
+
+    transition: ease 0.5s;
+    text-wrap: nowrap;
+    
+}
+
+
+.main {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+
+
+    position: relative;
+    top: 3.5px;
+
+    font-size: 4rem;
+    
+}
+
+.sidebar.collapsed h1 {
+    
+    opacity: 0;
+    width: 0;
+    pointer-events: none;
+
+}
