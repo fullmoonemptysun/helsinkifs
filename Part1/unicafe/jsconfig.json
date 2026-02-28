@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",           // Sets the root directory for imports
+    "paths": {
+      "@/*": ["./src/*"]      // Maps "@/" to your "src/" folder
+    }
+  },
+  "include": ["src"]          // Tells VS Code to provide autocomplete for files in src/
+}

@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import {Button} from './components/ui/button'
 
 const Header = ({headContent}) => {
     return (
@@ -8,20 +9,16 @@ const Header = ({headContent}) => {
     )
 }
 
-const Button = ({clickFun, text}) => {
-    return (
-        <button className="border p-2 hover:text-white hover:bg-blue-500 border-blue-700 rounded-md" onClick={clickFun}>{text}</button>
-    )
 
-
-}
 
 const BtnGroup = ({onClick1, onClick2, onClick3}) => {
     return (
         <div className='flex gap-3'>
-        <Button clickFun = {onClick1} text = "Good"/>
-        <Button clickFun={onClick2} text="Neutral"/>
-        <Button clickFun={onClick3} text = "Bad"/>
+        <Button onClick={onClick1} className=" text-white bg-green-500"variant="outline">Good</Button>
+        <Button onClick={onClick2} className="  bg-yellow-500"variant="outline">Neutral</Button>
+        <Button onClick={onClick3} variant="destructive">Bad</Button>
+
+
         </div>
     )
 } 
