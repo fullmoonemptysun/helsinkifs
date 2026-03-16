@@ -1,13 +1,28 @@
 import {useState} from 'react'
 import Note from './Components/Note'
+import axios from 'axios';
+import { useEffect } from 'react';
 
 
 
 
 const App = (props) => {
-    const [notes, setNote] = useState(props.notes);
+    const [notes, setNote] = useState([]);
     const [noteVal, setNoteVal] = useState("Enter a new note...");
     const [showAllnotes, setShowAll] = useState(true);
+
+
+    useEffect(() => {
+        console.log('effect');
+        axios
+        .get('http://localhost:3001/notes')
+        .then(response => {
+            console.log('promise fulfilled')
+            setNote(response.data);
+        })
+    }, [])
+
+    console.log('render', notes.length, 'notes');
 
 
     let notesToShow = showAllnotes? notes:notes.filter(note => note.important);
