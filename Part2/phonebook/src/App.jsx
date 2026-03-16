@@ -2,16 +2,25 @@ import { useState } from "react";
 import Form from "./Components/Form";
 import Filter from "./Components/Filter";
 import Book from "./Components/Book";
+import axios from 'axios'
+import { useEffect } from "react";
 const App = () => {
-    const [persons, setPersons] = useState([
-        { name: "Arto Hellas", num: "040-123456", id: 1 },
-        { name: "Ada Lovelace", num: "39-44-5323523", id: 2 },
-        { name: "Dan Abramov", num: "12-43-234345", id: 3 },
-        { name: "Mary Poppendieck", num: "39-23-6423122", id: 4 },
-    ]);
+    const [persons, setPersons] = useState([]);
     const [newName, setNewName] = useState("");
     const [newNum, setNewNum] = useState("");
     const [currSearch, setSearch] = useState("");
+
+    useEffect(()=>{
+        console.log("Effect");
+
+        axios
+        .get("http://localhost:3001/persons")
+        .then(response => {
+            console.log("Response successful");
+            setPersons(response.data);
+        })
+
+    }, [])
 
     let contacts = [...persons];
 
@@ -34,14 +43,14 @@ const App = () => {
         ) {
             alert(`${newName} already exists!`);
         } else if (
-            persons.find((person) => String(person.num) === String(newNum))
+            persons.find((person) => String(person.number) === String(newNum))
         ) {
             alert(`${newNum} is already in the Phonebook!`);
         } else {
             let newperson = {
                 id: persons.length + 1,
                 name: newName,
-                num: newNum,
+                number: newNum,
             };
             setPersons([...persons, newperson]);
 

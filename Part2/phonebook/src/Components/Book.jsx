@@ -7,7 +7,7 @@ const Book = ({ contacts, currSearch, hasNonSpace, persons }) => {
                     {contacts
                         .filter((contact) => contact.name === currSearch)
                         .map((contact) => (
-                            <li key={contact.id}>{contact.name}: {contact.num}</li>
+                            <li key={contact.id}>{contact.name}: {contact.number}</li>
                         ))}
                 </ul>
             </div>
@@ -18,7 +18,7 @@ const Book = ({ contacts, currSearch, hasNonSpace, persons }) => {
                 <h2>Numbers</h2>
                 <ul>
                     {persons.map((person) => (
-                        <li key={person.id}>{person.name}: {person.num}</li>
+                        <li key={person.id}>{person.name}: {person.number}</li>
                     ))}
                 </ul>
             </div>
