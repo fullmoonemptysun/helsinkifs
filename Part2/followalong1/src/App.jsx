@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import Note from './Components/Note'
-import axios from 'axios';
 import { useEffect } from 'react';
+import noteService from './services/notes'
 
 
 
@@ -14,9 +14,7 @@ const App = (props) => {
 
     useEffect(() => {
         console.log('effect');
-        axios
-        .get('http://localhost:3001/notes')
-        .then(response => {
+       noteService.getAll().then(response => {
             console.log('promise fulfilled')
             setNote(response.data);
         })
@@ -30,21 +28,40 @@ const App = (props) => {
     const submitNote = (event) => {
         event.preventDefault();
         let newnote = {
-            id: notes.length + 1,
+           
             content: noteVal,
             important: Math.random() < 0.5,
 
 
         }
 
-        setNote([...notes, newnote]);
+
+        noteService.create(newnote)
+        .then(response => {
+            console.log(response)
+            setNote([...notes, response.data]);
+        })
+        
 
         setNoteVal(' ');
+
+
     }
 
+    const toggleImportanceOf = (id) => {
+        console.log(`Importance of ${id} needs to be chaged`);
+
+        
+        const note = notes.find(n => n.id === id)
+        const changedNote = {...note, important: !note.important}
+
+        noteService.update(changedNote, id).then(response => {
+            setNote(notes.map(note => note.id === id?response.data:note));
+        })
+    }
 
     const handleInputChange = (event) => {
-        console.log(event.target.value);
+        
         setNoteVal(event.target.value);
     }
     return(
@@ -57,7 +74,7 @@ const App = (props) => {
             <button onClick={() => setShowAll(!showAllnotes)}>Show {showAllnotes? "Important":"All"}</button>
             <ul>
                 {notesToShow.map(note => 
-                    <Note key={note.id} note={note}/>)}
+                    <Note toggleImportance={() => toggleImportanceOf(note.id)} key={note.id} note={note}/>)}
             </ul>
 
 
