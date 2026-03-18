@@ -9,8 +9,9 @@ const getAll = () => {
     return request.then(response => response.data);
 }
 
-const update = () => {
-
+const update = (newContact, id) => {
+    const request = axios.put(`${baseUrl}/${id}`, newContact);
+    return request.then(response => response.data);
 }
 
 const del = (id) => {

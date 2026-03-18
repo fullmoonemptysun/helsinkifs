@@ -27,6 +27,14 @@ const App = () => {
         setNewNum(event.target.value);
     };
 
+    const updateExisting = (newContact, id) =>  {
+            bookService.update(newContact, id)
+            .then(response => setPersons(persons.map(person => person.id === response.id? response:person)))
+            .catch(error => {alert("THE CONTACT LIKELY DOES NOT EXIST ON THE SERVER"); 
+                setPersons(persons.filter(person => person.id !== id))
+            });
+    }
+
     const handleFormSubmit = (event) => {
         console.log(persons);
         event.preventDefault();
@@ -36,7 +44,14 @@ const App = () => {
                 (person) => person.name.toLowerCase() === newName.toLowerCase(),
             )
         ) {
-            alert(`${newName} already exists!`);
+
+            const existingContact = persons.find(person=>person.name.toLowerCase() === newName.toLowerCase());
+
+            const confirmChange = window.confirm(`You are about to change the information for ${existingContact.name}. Confirm?`);
+            if(confirmChange){
+                const changedContact = {...existingContact, number:newNum};
+                updateExisting(changedContact, existingContact.id)
+            }
         } else if (
             persons.find((person) => String(person.number) === String(newNum))
         ) {
