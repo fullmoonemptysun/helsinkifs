@@ -5,7 +5,7 @@ const Book = ({ contacts, currSearch, hasNonSpace, persons }) => {
                 <h2>Numbers</h2>
                 <ul>
                     {contacts
-                        .filter((contact) => contact.name === currSearch)
+                        .filter((contact) => contact.name.toLowerCase().includes( currSearch.toLowerCase()))
                         .map((contact) => (
                             <li key={contact.id}>{contact.name}: {contact.number}</li>
                         ))}

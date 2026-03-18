@@ -2,7 +2,8 @@ import { useState } from "react";
 import Form from "./Components/Form";
 import Filter from "./Components/Filter";
 import Book from "./Components/Book";
-import axios from 'axios'
+import bookService from './services/Book'
+
 import { useEffect } from "react";
 const App = () => {
     const [persons, setPersons] = useState([]);
@@ -13,11 +14,9 @@ const App = () => {
     useEffect(()=>{
         console.log("Effect");
 
-        axios
-        .get("http://localhost:3001/persons")
+       bookService.getAll()
         .then(response => {
-            console.log("Response successful");
-            setPersons(response.data);
+            setPersons(response);
         })
 
        
@@ -50,14 +49,22 @@ const App = () => {
             alert(`${newNum} is already in the Phonebook!`);
         } else {
             let newperson = {
-                id: persons.length + 1,
+            
                 name: newName,
                 number: newNum,
             };
-            setPersons([...persons, newperson]);
 
-            setNewName("");
-            setNewNum("");
+            bookService.create(newperson)
+            .then(response => {
+                setPersons([...persons, response]);
+                setNewName("");
+                setNewNum("");
+            }).catch(error => {
+                alert("There was an error in creating this contact!");
+            })
+            
+
+            
         }
     };
 

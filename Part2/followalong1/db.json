@@ -32,12 +32,12 @@
     },
     {
       "content": "how are you ",
-      "important": true,
+      "important": false,
       "id": "GlJXz6o"
     },
     {
       "content": "yo yo yo",
-      "important": true,
+      "important": false,
       "id": "VX8Bai3"
     },
     {

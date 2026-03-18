@@ -16,7 +16,7 @@ const App = (props) => {
         console.log('effect');
        noteService.getAll().then(response => {
             console.log('promise fulfilled')
-            setNote(response.data);
+            setNote([...response.data, {id:"hehe", content: "THIS IS A SUS NOTE", important:true}]);
         })
     }, [])
 
@@ -57,6 +57,7 @@ const App = (props) => {
 
         noteService.update(changedNote, id).then(response => {
             setNote(notes.map(note => note.id === id?response.data:note));
+        }).catch(error => {alert(`The note you are trying to update does not exist on the server`); setNote(notes.filter(note => note.id !== id));
         })
     }
 
