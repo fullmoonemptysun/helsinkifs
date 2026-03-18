@@ -13,8 +13,9 @@ const update = () => {
 
 }
 
-const del = () => {
-
+const del = (id) => {
+    const request  = axios.delete(`${baseUrl}/${id}`);
+    return request.then(response => response.data);
 }
 
 const create = (person) => {
