@@ -9,7 +9,7 @@ const Book = ({ currSearch, hasNonSpace, persons, deleteContact }) => {
                         .map((person) => (
                             <li key={person.id} >
                                 <div>{person.name}: {person.number}</div>
-                                <button onClick={()=>deleteContact(person)}>Delete Contact</button>
+                                <button className="" onClick={()=>deleteContact(person)}>Delete Contact</button>
                             </li>
                         ))}
                 </ul>
@@ -23,7 +23,7 @@ const Book = ({ currSearch, hasNonSpace, persons, deleteContact }) => {
                     {persons.map((person) => (
                         <li key={person.id}>
                             <div>{person.name}: {person.number}</div>
-                            <button onClick={()=>deleteContact(person)}>Delete Contact</button>
+                            <button className="" onClick={()=>deleteContact(person)}>Delete Contact</button>
                         </li>
                     ))}
                 </ul>

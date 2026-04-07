@@ -3,10 +3,10 @@
 const Form = ({handleFormSubmit, handleInputChange, newName, handlePhoneChange, newNum}) => {
 
     return (
-         <form onSubmit={handleFormSubmit}>
+         <form className="" onSubmit={handleFormSubmit}>
                     <div>
                         name:{" "}
-                        <input onChange={handleInputChange} value={newName} />
+                        <input className="" onChange={handleInputChange} value={newName} />
                     </div>
                     <div>
                         phone:{" "}
