@@ -36,8 +36,18 @@ app.get('/api/persons', (req, res)=>{
 app.get('/info', (req, res)=>{
     res.send(`<p>Phone book has info for ${data.length} people </p> <p>${(new Date()).toLocaleString()}</p>`);
     
-    
 })
+
+app.get('/api/persons/:id', (req, res)=>{
+    const contact = data.find((person) => person.id === req.params.id);
+    if(!contact){
+        return res.status(404).end()
+    }
+
+    res.json(contact);
+})
+
+
 
 
 
