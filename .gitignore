@@ -1,0 +1,2 @@
+# Ignore node_modules in phonebook server
+node_modules/
