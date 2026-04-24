@@ -1,16 +1,16 @@
 import axios from 'axios'
 
-
+const baseUrl = '/api/notes/'
 const getAll = () => {
-    return axios.get("http://localhost:3001/notes");
+    return axios.get(baseUrl);
 }
 
 const create = (note) => {
-    return axios.post("http://localhost:3001/notes", note);
+    return axios.post(baseUrl, note);
 }
 
 const update = (note, id) => {
-    return axios.put(`http://localhost:3001/notes/${id}`, note);
+    return axios.put(`${baseUrl}/${id}`, note);
 }
 
 
